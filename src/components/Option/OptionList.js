@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const OptionList = () => {
-    const [Options, setOptions] = useState([]);
+    const [options, setOptions] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
@@ -12,26 +12,36 @@ const OptionList = () => {
     }, []);
 
     const loadOptions = async () => {
-        const response = await getAllOptions();
-        setOptions(response.data);
+        try {
+            const response = await getAllOptions();
+            console.log("Dados carregados:", response.data); // Verifique os dados recebidos
+            setOptions(response.data || []); // Garantia de que options é sempre um array
+        } catch (error) {
+            console.error("Erro ao carregar opções:", error);
+        }
     };
+    
 
     const handleDelete = async (id) => {
-        await deleteOption(id);
-        loadOptions();
+        try {
+            await deleteOption(id);
+            loadOptions();
+        } catch (error) {
+            console.error("Erro ao deletar opção:", error);
+        }
     };
 
-    const filteredOptions = Options.filter(Option =>
-        Option.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredOptions = options.filter(option =>
+        option.nome?.toLowerCase().includes(searchTerm?.toLowerCase() || '')
     );
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Lista de Músicas</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Lista de Opções</h2>
             <div className="mb-6">
                 <input
                     type="text"
-                    placeholder="Procurar por música"
+                    placeholder="Procurar por opção"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="p-3 border rounded w-full"
@@ -39,15 +49,21 @@ const OptionList = () => {
             </div>
             <div className="overflow-y-auto max-h-80 p-4 bg-white rounded shadow-md">
                 <ul className="list-none space-y-4">
-                    {filteredOptions.map(Option => (
-                        <li key={Option.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg shadow">
-                            <span className="text-gray-700">{Option.title} - {Option.genre} - {Option.duration} mins</span>
-                            
+                    {filteredOptions.map(option => (
+                        <li key={option.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg shadow">
+                            <img 
+                                        src={option.imagem} 
+                                        alt={option.nome} 
+                                        className="w-16 h-16 object-cover rounded"
+                                    />
+                            <span className="text-gray-700">
+                                {option.nome} - {option.descricao} - {option.preco} - {option.categoriaId}
+                            </span>
                             <FontAwesomeIcon 
-                                    icon={faTrash} 
-                                    className="ml-4 text-red-500 cursor-pointer hover:text-red-600 transition duration-300" 
-                                    onClick={() => handleDelete(Option.id)}
-                                />
+                                icon={faTrash} 
+                                className="ml-4 text-red-500 cursor-pointer hover:text-red-600 transition duration-300" 
+                                onClick={() => handleDelete(option.id)}
+                            />
                         </li>
                     ))}
                 </ul>

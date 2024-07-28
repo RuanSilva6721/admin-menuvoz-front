@@ -7,7 +7,7 @@ const OptionPage = () => {
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-6">Option</h1>
       <OptionForm CategoryId={1} /> {/* Passe o ID do álbum ao qual você deseja adicionar músicas */}
-      {/* <OptionList /> */}
+      <OptionList />
     </div>
   );
 };

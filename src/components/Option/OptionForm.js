@@ -4,42 +4,47 @@ import { getAllCategories } from '../../services/CategoryService';
 
 const OptionForm = () => {
     const [nome, setNome] = useState('');
-    const [duration, setDuration] = useState('');
-    const [genre, setGenre] = useState('');
-    const [CategoryId, setCategoryId] = useState('');
-    const [Categorys, setCategorys] = useState([]);
+    const [descricao, setDescricao] = useState('');
+    const [preco, setPreco] = useState('');
+    const [imagem, setImagem] = useState(null);
+    const [categoriaId, setCategoriaId] = useState('');
+    const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        const fetchCategorys = async () => {
+        const fetchCategorias = async () => {
             const response = await getAllCategories();
-            setCategorys(response.data);
+            setCategorias(response.data);
         };
 
-        fetchCategorys();
+        fetchCategorias();
     }, []);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('nome', nome);
-        formData.append('duration', duration);
-        formData.append('genre', genre);
-        formData.append('Category_id', CategoryId);
+        const newOption = {
+            nome,
+            descricao,
+            preco,
+            imagem, // A imagem agora é uma string Base64
+            categoriaId
+        };
 
-        await createOption(formData);
+        await createOption(newOption);
 
         // Clear form
         setNome('');
-        setDuration('');
-        setGenre('');
-        setCategoryId('');
-        window.location.reload()
+        setDescricao('');
+        setPreco('');
+        setImagem('');
+        setCategoriaId('');
+        window.location.reload();
     };
 
     return (
         <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Adicionar Música</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Adicionar Opções</h2>
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Nome:</label>
                 <input 
@@ -50,35 +55,45 @@ const OptionForm = () => {
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Duração (minutos):</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Descrição:</label>
+                <input 
+                    type="text" 
+                    value={descricao} 
+                    onChange={(e) => setDescricao(e.target.value)} 
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                />
+            </div>
+            <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Preço:</label>
                 <input 
                     type="number" 
                     step="0.01"
-                    value={duration} 
-                    onChange={(e) => setDuration(e.target.value)} 
+                    value={preco} 
+                    onChange={(e) => setPreco(e.target.value)} 
                     className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Gênero:</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Url Imagem:</label>
                 <input 
                     type="text" 
-                    value={genre} 
-                    onChange={(e) => setGenre(e.target.value)} 
+                    value={imagem} 
+                    onChange={(e) => setImagem(e.target.value)} 
                     className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 />
             </div>
+
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Category:</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Categoria:</label>
                 <select
-                    value={CategoryId}
-                    onChange={(e) => setCategoryId(e.target.value)}
+                    value={categoriaId}
+                    onChange={(e) => setCategoriaId(e.target.value)}
                     className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 >
-                    <option value="">Selecionar Category</option>
-                    {Categorys.map(Category => (
-                        <option key={Category.id} value={Category.id}>
-                            {Category.nome}
+                    <option value="">Selecionar Categoria</option>
+                    {categorias.map(categoria => (
+                        <option key={categoria.id} value={categoria.id}>
+                            {categoria.nome}
                         </option>
                     ))}
                 </select>
@@ -87,7 +102,7 @@ const OptionForm = () => {
                 type="submit" 
                 className="w-full bg-blue-500 text-white font-medium px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
             >
-                Adicionar Música
+                Adicionar Opções
             </button>
         </form>
     );
