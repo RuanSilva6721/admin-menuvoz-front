@@ -11,7 +11,7 @@ const CategoryForm = () => {
         await createCategory(newCategory);
 
         setNome('');
-        window.location.reload();
+        //window.location.reload();
        
     };
 

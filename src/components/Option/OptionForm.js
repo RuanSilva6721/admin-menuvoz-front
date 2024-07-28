@@ -39,7 +39,7 @@ const OptionForm = () => {
         setPreco('');
         setImagem('');
         setCategoriaId('');
-        window.location.reload();
+        //window.location.reload();
     };
 
     return (
