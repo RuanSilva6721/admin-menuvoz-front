@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = `${process.env.REACT_APP_API_URL}/Option`;
+const API_URL = `https://api-node-menuvoz-f9hf.vercel.app/Option`;
 
 export const getAllOptions = async () => {
-    return axios.get(`${process.env.REACT_APP_API_URL}/options`);
+    return axios.get(`https://api-node-menuvoz-f9hf.vercel.app/options`);
 };
 
 export const getOptionById = async (id) => {

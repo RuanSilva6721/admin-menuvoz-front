@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = `${process.env.REACT_APP_API_URL}/Category`;
+const API_URL = `https://api-node-menuvoz-f9hf.vercel.app/Category`;
 
 export const getAllCategories = async () => {
-    return axios.get(`${process.env.REACT_APP_API_URL}/Categories`);
+    return axios.get(`https://api-node-menuvoz-f9hf.vercel.app/Categories`);
 };
 
 export const getCategoryById = async (id) => {
