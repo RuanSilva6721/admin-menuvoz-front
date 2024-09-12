@@ -43,52 +43,52 @@ const OptionForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Adicionar Opções</h2>
+        <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-black rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold text-center text-white mb-6">Adicionar Opções</h2>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Nome:</label>
+                <label className="block text-sm font-medium text-white mb-2">Nome:</label>
                 <input 
                     type="text" 
                     value={nome} 
                     onChange={(e) => setNome(e.target.value)} 
-                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 text-black  "
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Descrição:</label>
+                <label className="block text-sm font-medium text-white mb-2">Descrição:</label>
                 <input 
                     type="text" 
                     value={descricao} 
                     onChange={(e) => setDescricao(e.target.value)} 
-                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 text-black "
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Preço:</label>
+                <label className="block text-sm font-medium text-white mb-2">Preço:</label>
                 <input 
                     type="number" 
                     step="0.01"
                     value={preco} 
                     onChange={(e) => setPreco(e.target.value)} 
-                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 text-black "
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Url Imagem:</label>
+                <label className="block text-sm font-medium text-white mb-2">Url Imagem:</label>
                 <input 
                     type="text" 
                     value={imagem} 
                     onChange={(e) => setImagem(e.target.value)} 
-                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 text-black "
                 />
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Categoria:</label>
+                <label className="block text-sm font-medium text-white mb-2">Categoria:</label>
                 <select
                     value={categoriaId}
                     onChange={(e) => setCategoriaId(e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 text-black "
                 >
                     <option value="">Selecionar Categoria</option>
                     {categorias.map(categoria => (

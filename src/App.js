@@ -7,22 +7,22 @@ import OptionPage from './pages/OptionPage';
 const App = () => {
   return (
     <Router>
-      <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
+      <div className="container mx-auto p-4 bg-black min-h-screen">
         <nav className="mb-4 flex justify-center space-x-8">
           <Link 
             to="/" 
-            className="text-lg text-gray-700 hover:text-gray-900 hover:underline"
+            className="text-lg text-white hover:text-white hover:underline"
           >
-            Categorys
+            Categorias
           </Link>
           <Link 
             to="/Option" 
-            className="text-lg text-gray-700 hover:text-gray-900 hover:underline"
+            className="text-lg text-white hover:text-white hover:underline"
           >
-            Option
+            Opções
           </Link>
         </nav>
-        <div className="bg-white shadow-md rounded p-6">
+        <div className="bg-black shadow-md rounded p-6 text-white">
           <Routes>
             <Route path="/" element={<CategoryPage />} />
             <Route path="/Option" element={<OptionPage />} />

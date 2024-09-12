@@ -36,8 +36,8 @@ const OptionList = () => {
     );
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Lista de Opções</h2>
+        <div className="p-6 bg-black min-h-screen">
+            <h2 className="text-3xl font-bold text-center text-white mb-6">Lista de Opções</h2>
             <div className="mb-6">
                 <input
                     type="text"
@@ -47,16 +47,16 @@ const OptionList = () => {
                     className="p-3 border rounded w-full"
                 />
             </div>
-            <div className="overflow-y-auto max-h-80 p-4 bg-white rounded shadow-md">
+            <div className="overflow-y-auto max-h-80 p-4 bg-black rounded shadow-md text-white">
                 <ul className="list-none space-y-4">
                     {filteredOptions.map(option => (
-                        <li key={option.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg shadow">
+                        <li key={option.id} className="flex justify-between items-center p-3 bg-black rounded-lg shadow">
                             <img 
                                         src={option.imagem} 
                                         alt={option.nome} 
                                         className="w-16 h-16 object-cover rounded"
                                     />
-                            <span className="text-gray-700">
+                            <span className="text-white">
                                 {option.nome} - {option.descricao} - {option.preco} - {option.categoriaId}
                             </span>
                             <FontAwesomeIcon 
